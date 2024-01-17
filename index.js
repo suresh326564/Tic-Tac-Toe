@@ -2,7 +2,7 @@ let boxes=document.querySelectorAll(".box");
 let resetBtn=document.querySelector(".reset");
 let newGameBtn=document.querySelector(".new_btn");
 let msgContainer=document.querySelector(".msg_container");
-let msg=document.querySelector(".msg")
+let msg=document.querySelector(".msg");
 let turnO=true;
 const winPatterns=[
     [0,1,2],
