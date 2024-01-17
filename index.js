@@ -42,23 +42,39 @@ const showWinner=(winner)=>{
     msgContainer.classList.remove("hide");
     disableBoxes(); 
 };
-const checkWinner=()=>{
-    for(let pattern of winPatterns){
-        let position1=boxes[pattern[0]].innerText;
-        let position2=boxes[pattern[1]].innerText;
-        let position3=boxes[pattern[2]].innerText;
-        if(position1!="" && position2!="" && position3!="")
-        {
-            if(position1===position2 && position2===position3){
-                console.log("winner",position1);
-                showWinner(position1);
 
-            }
-           
+const checkTie = () => {
+    for (let box of boxes) {
+        if (box.innerText === "") {
+            return false; // If any box is empty, the game is not a tie
         }
-    
+    }
+    return true; // All boxes are filled, it's a tie
+};
+
+const checkWinner = () => {
+    for (let pattern of winPatterns) {
+        let position1 = boxes[pattern[0]].innerText;
+        let position2 = boxes[pattern[1]].innerText;
+        let position3 = boxes[pattern[2]].innerText;
+        if (position1 !== "" && position2 !== "" && position3 !== "") {
+            if (position1 === position2 && position2 === position3) {
+                showWinner(position1);
+            }
+        }
+    }
+
+    // Check for a tie
+    if (checkTie() && !msgContainer.classList.contains("hide")) {
+        msg.innerText = "It's a Tie!";
+        msgContainer.classList.remove("hide");
+        disableBoxes();
     }
 };
+
+
+
+
 
 const disableBoxes =()=>{
     for(let box of boxes){
